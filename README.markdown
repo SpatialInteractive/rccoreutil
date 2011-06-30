@@ -19,6 +19,6 @@ Contents
 * High level web abstractions (net.rcode.core.web).  Static file handling, mime types, templates, asset management
 
 
-Thanks for visiting.
+Thanks for visiting  :)
 
 stella
