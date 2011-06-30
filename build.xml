@@ -1,0 +1,51 @@
+<project name="rccoreutil">
+	<property name="build.dir" location="build"/>
+	<property name="assetserver.dir" location="../external/assetserver" />
+	
+	<target name="init">
+		<mkdir dir="build/classes"/>
+		<mkdir dir="build/jars"/>
+		<mkdir dir="build/depend"/>
+		<path id="compile.classpath">
+			<fileset dir="lib/jar">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="build/depend">
+				<include name="*.jar"/>
+			</fileset>
+		</path>
+	</target>
+	
+	<target name="clean">
+		<delete dir="build"/>
+		<echo>Cleaning assetserver</echo>
+		<ant inheritall="false" dir="${assetserver.dir}" target="clean"/>
+	</target>
+	
+	<target name="depend">
+		<echo>Building assetserver</echo>
+		<mkdir dir="build/depend"/>
+		<ant inheritall="false" dir="${assetserver.dir}" target="jar-embed"/>
+		<copy todir="build/depend" file="${assetserver.dir}/build/assetserver-embed.jar"/>
+	</target>
+	
+	<target name="compile" depends="depend,init">
+		<javac srcdir="src" destdir="build/classes" source="1.6" target="1.6" includeantruntime="false"
+			debug="true"
+			encoding="UTF-8" classpathref="compile.classpath"
+			>
+		</javac>
+		<copy todir="build/classes">
+			<fileset dir="src">
+				<exclude name="**/*.java"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="jar" depends="compile">
+		<mkdir dir="build/dist"/>
+		<jar jarfile="build/dist/rccoreutil.jar" basedir="build/classes">
+		</jar>
+	</target>
+	
+</project>
