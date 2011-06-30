@@ -1,6 +1,6 @@
-<project name="rccoreutil">
+<project name="rccoreutil" default="jar">
 	<property name="build.dir" location="build"/>
-	<property name="assetserver.dir" location="../external/assetserver" />
+	<property name="assetserver.dir" location="external/assetserver" />
 	
 	<target name="init">
 		<mkdir dir="build/classes"/>

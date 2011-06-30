@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/commons-codec-1.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/commons-lang-2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/commons-lang3-3.0-beta.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/freemarker-2.3.18.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/gson-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/js-1.7R2.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/jul-to-slf4j-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/log4j-1.2.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/netty-3.2.4.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/slf4j-api-1.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/jar/slf4j-log4j12-1.6.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry exported="true" kind="lib" path="build/depend/assetserver-embed.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

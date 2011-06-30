@@ -18,6 +18,13 @@ Contents
 * Asynchronous Redis client driver (net.rcode.core.redis)
 * High level web abstractions (net.rcode.core.web).  Static file handling, mime types, templates, asset management
 
+Building
+--------
+
+Make sure you 'git submodule init && git submodule update' to grab depends.
+
+* ant depend
+* ant jar
 
 Thanks for visiting  :)
 
