@@ -3,6 +3,7 @@ package net.rcode.core.web;
 import java.util.concurrent.Executor;
 
 import net.rcode.core.httpserver.DefaultHttpRequestHandler;
+import net.rcode.core.httpserver.HttpServer;
 
 /**
  * RequestHandler that does its work by submitting jobs to an
@@ -18,9 +19,17 @@ public abstract class ThreadedRequestHandler extends DefaultHttpRequestHandler i
 		this.executor=executor;
 	}
 	
-	public Executor getExecutor() {
-		return executor;
+	/**
+	 * Defaults to using the server's web worker executor
+	 */
+	public ThreadedRequestHandler() {
 	}
+	
+	public Executor getExecutor() {
+		if (executor!=null) return executor;
+		return HttpServer.Instance.get(getChannel()).getWebWorkerExecutor();
+	}
+	
 	
 	/**
 	 * Override this to handle the request
@@ -30,7 +39,7 @@ public abstract class ThreadedRequestHandler extends DefaultHttpRequestHandler i
 	
 	@Override
 	protected void handle() throws Exception {
-		executor.execute(this);
+		getExecutor().execute(this);
 	}
 
 	@Override

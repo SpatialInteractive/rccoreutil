@@ -1,5 +1,7 @@
 package net.rcode.core.httpserver;
 
+import static org.jboss.netty.channel.Channels.pipeline;
+
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.text.SimpleDateFormat;
@@ -16,7 +18,6 @@ import org.jboss.netty.channel.ChannelPipelineFactory;
 import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
-import org.jboss.netty.handler.codec.http.HttpContentCompressor;
 import org.jboss.netty.handler.codec.http.HttpContentDecompressor;
 import org.jboss.netty.handler.codec.http.HttpHeaders;
 import org.jboss.netty.handler.codec.http.HttpRequest;
@@ -25,8 +26,6 @@ import org.jboss.netty.handler.codec.http.HttpResponse;
 import org.jboss.netty.handler.codec.http.HttpResponseEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.jboss.netty.channel.Channels.*;
 
 public class HttpServer implements ChannelPipelineFactory {
 	private static final SimpleDateFormat DATE_FMT_PROTOTYPE=new SimpleDateFormat("dd/MMM/yyyy:HH:mm:ss Z");
@@ -184,7 +183,7 @@ public class HttpServer implements ChannelPipelineFactory {
 		pipeline.addLast("encoder", new HttpResponseEncoder());
 		
 		pipeline.addLast("inflater", new HttpContentDecompressor());
-		pipeline.addLast("deflator", new HttpContentCompressor());
+		pipeline.addLast("deflator", new ConditionalHttpContentCompressor());
 		
 		pipeline.addLast("handler", new HttpServerChannelHandler(dispatchers));
 		return pipeline;
